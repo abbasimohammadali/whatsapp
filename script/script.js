@@ -1,18 +1,16 @@
-// script.js
-$(document).ready(function() {
-    let currentUser   = 'کاربر 1'; // کاربر پیش‌فرض
-    let messages = JSON.parse(localStorage.getItem(currentUser )) || []; // بارگذاری پیام‌ها از localStorage
+$(document).ready(function () {
+    let currentUser = 'کاربر 1';
+    let messages = JSON.parse(localStorage.getItem(currentUser)) || [];
 
-    // انتخاب کاربر
-    $('.user').click(function() {
-        currentUser   = $(this).data('username');
-        $('#userProfile .username').text(currentUser );
-        messages = JSON.parse(localStorage.getItem(currentUser )) || []; // بارگذاری پیام‌ها از localStorage
-        displayMessages(); // نمایش پیام‌ها
+    $('.user').click(function () {
+        currentUser = $(this).data('username');
+        $('#userProfile .username').text(currentUser);
+        messages = JSON.parse(localStorage.getItem(currentUser)) || [];
+        displayMessages();
         scrollToBottom();
     });
 
-    $('#sendButton').click(function() {
+    function sendMessage() {
         const messageText = $('#messageInput').val();
         if (messageText) {
             const timestamp = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false });
@@ -21,33 +19,42 @@ $(document).ready(function() {
                 sender: 'me',
                 time: timestamp
             };
-            messages.push(message); // اضافه کردن پیام به آرایه
-            localStorage.setItem(currentUser , JSON.stringify(messages)); // ذخیره پیام‌ها در localStorage
-            $('#messageInput').val(''); // پاک کردن ورودی پیام
-            displayMessages(); // نمایش پیام‌ها
+            messages.push(message);
+            localStorage.setItem(currentUser, JSON.stringify(messages));
+            $('#messageInput').val('');
+            displayMessages();
             scrollToBottom();
-    
-            // ارسال پیام از طرف کاربر دیگر
-            setTimeout(function() {
-                const replyMessage = `پیام از ${currentUser }`;
-                const replyTimestamp =new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false });
+
+            setTimeout(function () {
+                const replyMessage = `پیام از ${currentUser}`;
+                const replyTimestamp = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false });
                 const reply = {
                     text: replyMessage,
                     sender: 'other',
                     time: replyTimestamp
                 };
-                messages.push(reply); // اضافه کردن پیام پاسخ به آرایه
-                localStorage.setItem(currentUser , JSON.stringify(messages)); // ذخیره پیام‌ها در localStorage
-                displayMessages(); // نمایش پیام‌ها
+                messages.push(reply); 
+                localStorage.setItem(currentUser, JSON.stringify(messages));
+                displayMessages(); 
                 scrollToBottom();
-            }, 1000); // 1 ثانیه بعد از ارسال پیام شما
+            }, 1000); 
+        }
+    }
+
+    $('#sendButton').click(function () {
+        sendMessage();
+    });
+
+    $('#messageInput').keydown(function (event) {
+        if (event.key === "Enter" && !event.shiftKey) {
+            event.preventDefault();
+            sendMessage();
         }
     });
 
-    // نمایش پیام‌ها
     function displayMessages() {
-        $('#messages').empty(); // پاک کردن پیام‌ها از DOM
-        messages.forEach(function(message) {
+        $('#messages').empty();
+        messages.forEach(function (message) {
             $('#messages').append(`
                 <div class="message ${message.sender}">
                     <div class="box-content">
@@ -59,12 +66,10 @@ $(document).ready(function() {
         });
     }
 
-    // اسکرول به پایین
     function scrollToBottom() {
         const messagesDiv = $('#messages');
         messagesDiv.scrollTop(messagesDiv[0].scrollHeight);
     }
 
-    // اسکرول به پایین هنگام بارگذاری صفحه
     scrollToBottom();
 });
