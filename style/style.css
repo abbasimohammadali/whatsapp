@@ -94,7 +94,8 @@ body {
 .icon-rigth-top .newsletter ,
 .icon-rigth-top .community {
     color: rgb(145, 145, 145);
-    padding-block: 10px;
+    margin-block: 10px;
+    cursor:pointer;
 }
 
 .icon-rigth-bottom div img {
@@ -526,7 +527,7 @@ body {
 
 .messages {
     overflow-y: auto;
-    height: 89%;
+    height: 92%;
     background-image: url(../image/background-d.jpg);
     background-position: center;
     background-repeat: no-repeat;
