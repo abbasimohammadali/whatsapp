@@ -28,9 +28,18 @@ cheng_messageInput.addEventListener('input', function () {
     }
 })
 
+document.querySelector('#messageInput').addEventListener('keydown' , (function (event) {
+    if (event.key === "Enter" && !event.shiftKey) {
+        event.preventDefault();
+        document.querySelector('.send-sound').style.display = 'block'
+        document.querySelector('.send').style.display = 'none'
+    }
+}));
+
 function showMessage() {
     if (window.innerWidth < 1300) {
-        document.getElementById("message").innerText = 'سایز مرورگر کمتراز حد مجاز است .';
+        const showtext = "سایز مرورگر کمتراز حد مجاز است .";
+        document.getElementById("message").innerText = showtext;
         document.getElementById("message").style.display = 'flex'
         document.querySelector('.row').style.display = 'none'
     }
