@@ -6,10 +6,10 @@ const name_user_chat = document.querySelector('.Information-user h2')
 const cheng_messageInput = document.querySelector('#messageInput')
 
 user.forEach(function (event) {
-    event.addEventListener('click' , function(e) {
-        
+    event.addEventListener('click', function (e) {
+
         const userImage = event.querySelector('.profile-user img').src;
-        image_chat.setAttribute('src' , userImage);
+        image_chat.setAttribute('src', userImage);
 
         const userName = event.querySelector('.details-user h2').textContent
         name_user_chat.innerHTML = userName;
@@ -19,11 +19,22 @@ user.forEach(function (event) {
     })
 })
 
-cheng_messageInput.addEventListener( 'input' , function() {
+cheng_messageInput.addEventListener('input', function () {
     document.querySelector('.send-sound').style.display = 'none'
     document.querySelector('.send').style.display = 'block'
-    if(cheng_messageInput.value === ''){
+    if (cheng_messageInput.value === '') {
         document.querySelector('.send-sound').style.display = 'block'
-    document.querySelector('.send').style.display = 'none'
+        document.querySelector('.send').style.display = 'none'
     }
 })
+
+function showMessage() {
+    if (window.innerWidth < 1300) {
+        const showtext = "سایز مرورگر کمتراز حد مجاز است .";
+        document.getElementById("message").innerText = showtext;
+        document.getElementById("message").style.display = 'flex'
+        document.querySelector('.row').style.display = 'none'
+    }
+}
+
+window.onload = showMessage;
