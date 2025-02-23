@@ -222,7 +222,7 @@ body {
 }
 
 .user-list {
-    overflow-y: scroll !important;
+    overflow-y: auto;
     height: calc(100vh - 120px);
 }
 
@@ -492,7 +492,7 @@ body {
     -o-border-radius: 8px;
 }
 
-.message-Input input {
+.message-Input input  {
     max-height: 11.76em;
     min-height: 1.47em;
     user-select: text;
@@ -505,6 +505,12 @@ body {
     outline: none;
     color: #fff;
     padding-right: 10px;
+    transform: translateY(-5px);
+}
+
+.message-Input input:focus ,
+.message-Input input:checked {
+    background-image: linear-gradient(#2a3942 , #2a3942);
 }
 
 .message-Input input::placeholder {
@@ -544,6 +550,10 @@ body {
 .messages {
     overflow-y: auto;
     height: 92%;
+
+}
+
+.content-box {
     background-image: url(../image/background-d.jpg);
     background-position: center;
     background-repeat: no-repeat;
