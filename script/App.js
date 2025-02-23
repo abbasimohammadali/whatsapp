@@ -30,8 +30,7 @@ cheng_messageInput.addEventListener('input', function () {
 
 function showMessage() {
     if (window.innerWidth < 1300) {
-        const showtext = "سایز مرورگر کمتراز حد مجاز است .";
-        document.getElementById("message").innerText = showtext;
+        document.getElementById("message").innerText = 'سایز مرورگر کمتراز حد مجاز است .';
         document.getElementById("message").style.display = 'flex'
         document.querySelector('.row').style.display = 'none'
     }
