@@ -72,4 +72,8 @@ $(document).ready(function () {
     }
 
     scrollToBottom();
+
+    $('.menu span').click(function () {
+        document.querySelector('.items-menu').style.display = 'block'
+    })
 });
