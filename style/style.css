@@ -154,6 +154,7 @@ body {
 
 .icon-header .menu {
     margin-left: 10px;
+    position: relative;
 }
 
 .icon-header .btn-mod svg ,
@@ -167,7 +168,21 @@ body {
 }
 
 .items-menu {
-    display: none;
+    display: none;   
+    position: absolute;
+    background: var(--bs-pencilTip);
+    z-index: 2;
+    padding-block: 10px;
+    padding-inline: 45px;
+    right: -600%;
+    text-align: end;
+}
+
+.items-menu li {
+    color: rgba(241,241,242,0.88);
+    list-style: none;
+    padding-block: 5px;
+    white-space: nowrap;
 }
 
 /***************** end style user icon *****************/
